@@ -166,9 +166,9 @@ const AdClicksChart = React.memo(function AdClicksChart({ ads }: { ads: Ad[] }) 
             })}
         </div>
     );
-}
+});
 
-// ─── Stat Card ─���──────────────────────────────────────��────────────────────────
+// ─── Stat Card ─�����──────────────────────────────────────��────────────────────────
 function StatCard({ label, value, sub, icon: Icon, color, bg, loading, badge }: {
     label: string; value: string; sub?: string; icon: React.ElementType;
     color: string; bg: string; loading: boolean; badge?: string;
