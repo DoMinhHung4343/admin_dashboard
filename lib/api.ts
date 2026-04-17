@@ -1,4 +1,4 @@
-const BASE = '/api';
+const BASE = process.env.NEXT_PUBLIC_API_URL || '/api';
 const responseCache = new Map<string, { expiresAt: number; data: unknown }>();
 const inFlightRequests = new Map<string, Promise<unknown>>();
 

@@ -67,33 +67,33 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* ── Sidebar ───────────────────────────────────────── */}
             <aside className={`
                 fixed inset-y-0 left-0 z-50 w-56 flex flex-col
-                bg-zinc-50 dark:bg-[#0f0f0f]
-                border-r border-zinc-200 dark:border-white/[0.06]
-                transition-transform duration-200 ease-out
+                bg-white dark:bg-[#0a0a0a]
+                border-r border-slate-200 dark:border-slate-800
+                transition-transform duration-300 ease-out
                 ${open ? 'translate-x-0' : '-translate-x-full'}
                 lg:translate-x-0
             `}>
 
                 {/* Brand */}
-                <div className="h-14 flex items-center px-5 border-b border-zinc-200 dark:border-white/[0.06] shrink-0 gap-3">
-                    <div className="size-7 bg-zinc-900 dark:bg-white flex items-center justify-center shrink-0">
-                        <MusicNote size={14} weight="fill" className="text-white dark:text-black" />
+                <div className="h-14 flex items-center px-5 border-b border-slate-200 dark:border-slate-800 shrink-0 gap-3 bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
+                    <div className="size-7 bg-gradient-to-br from-blue-600 to-emerald-600 dark:from-emerald-500 dark:to-blue-500 flex items-center justify-center shrink-0 rounded-lg shadow-md">
+                        <MusicNote size={14} weight="fill" className="text-white" />
                     </div>
                     <div>
-                        <p className="text-[12px] font-semibold tracking-tight text-zinc-900 dark:text-white leading-none">
-                            Music Admin
+                        <p className="text-[12px] font-bold tracking-tight bg-gradient-to-r from-blue-700 to-emerald-600 dark:from-emerald-400 dark:to-blue-400 bg-clip-text text-transparent leading-none">
+                            Phazel Sound
                         </p>
-                        <p className="text-[10px] text-zinc-400 dark:text-zinc-500 mt-0.5 font-mono">
-                            v0.1.0
+                        <p className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
+                            Admin Panel
                         </p>
                     </div>
                 </div>
 
                 {/* Nav */}
-                <nav className="flex-1 px-2.5 py-3 space-y-0.5 overflow-y-auto">
+                <nav className="flex-1 px-2.5 py-3 space-y-1 overflow-y-auto">
                     {/* Label section */}
-                    <p className="text-[9px] font-semibold tracking-[0.15em] text-zinc-400 dark:text-zinc-600 px-2.5 pt-1 pb-2 uppercase">
-                        Menu
+                    <p className="text-[9px] font-semibold tracking-[0.15em] text-slate-400 dark:text-slate-500 px-2.5 pt-2 pb-2 uppercase">
+                        Navigation
                     </p>
                     {NAV.map(({ href, label, icon: Icon, exact }) => {
                         const active = isActive(href, exact);
@@ -103,17 +103,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                 href={href}
                                 onClick={() => setOpen(false)}
                                 className={`
-                                    flex items-center gap-2.5 px-2.5 h-9 text-[13px] rounded-md transition-all
+                                    flex items-center gap-2.5 px-3 h-9 text-[13px] rounded-lg transition-all duration-200
                                     ${active
-                                        ? 'bg-zinc-900 dark:bg-white text-white dark:text-black font-semibold'
-                                        : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.06] font-medium'
+                                        ? 'bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold shadow-lg shadow-blue-500/20 dark:shadow-emerald-500/20'
+                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 font-medium'
                                     }
                                 `}
                             >
                                 <Icon
-                                    size={15}
+                                    size={16}
                                     weight={active ? 'fill' : 'regular'}
-                                    className={active ? '' : 'opacity-70'}
+                                    className={active ? '' : 'opacity-60'}
                                 />
                                 {label}
                             </Link>
@@ -122,35 +122,35 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 </nav>
 
                 {/* Bottom */}
-                <div className="px-2.5 py-3 border-t border-zinc-200 dark:border-white/[0.06] shrink-0 space-y-0.5">
+                <div className="px-2.5 py-3 border-t border-slate-200 dark:border-slate-800 shrink-0 space-y-1">
                     <button
                         onClick={toggle}
-                        className="flex items-center gap-2.5 px-2.5 h-9 text-[13px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.06] w-full rounded-md transition-all"
+                        className="flex items-center gap-2.5 px-3 h-9 text-[13px] font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 w-full rounded-lg transition-all duration-200"
                     >
                         {isDark
-                            ? <Sun size={15} weight="regular" className="opacity-70" />
-                            : <Moon size={15} weight="regular" className="opacity-70" />}
-                        {isDark ? 'Chế độ sáng' : 'Chế độ tối'}
+                            ? <Sun size={16} weight="regular" className="opacity-70" />
+                            : <Moon size={16} weight="regular" className="opacity-70" />}
+                        {isDark ? 'Sáng' : 'Tối'}
                     </button>
                     <button
                         onClick={logout}
-                        className="flex items-center gap-2.5 px-2.5 h-9 text-[13px] font-medium text-zinc-500 dark:text-zinc-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-400/[0.06] w-full rounded-md transition-all"
+                        className="flex items-center gap-2.5 px-3 h-9 text-[13px] font-medium text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 w-full rounded-lg transition-all duration-200"
                     >
-                        <SignOut size={15} weight="regular" className="opacity-70" />
+                        <SignOut size={16} weight="regular" className="opacity-70" />
                         Đăng xuất
                     </button>
 
                     {/* User pill */}
-                    <div className="mt-2 pt-2 border-t border-zinc-200 dark:border-white/[0.06] px-2.5 pb-1">
-                        <div className="flex items-center gap-2">
-                            <div className="size-6 bg-zinc-900 dark:bg-white rounded-full flex items-center justify-center shrink-0">
-                                <span className="text-[9px] font-bold text-white dark:text-black">A</span>
+                    <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 px-2.5 pb-1">
+                        <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-800">
+                            <div className="size-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-md flex items-center justify-center shrink-0 text-white font-bold text-sm">
+                                A
                             </div>
                             <div className="min-w-0">
-                                <p className="text-[11px] font-semibold text-zinc-800 dark:text-zinc-200 truncate leading-none">
+                                <p className="text-[11px] font-semibold text-slate-900 dark:text-slate-200 truncate leading-none">
                                     Admin
                                 </p>
-                                <p className="text-[9px] text-zinc-400 dark:text-zinc-500 mt-0.5 font-mono">
+                                <p className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
                                     ROLE_ADMIN
                                 </p>
                             </div>
@@ -171,7 +171,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="flex-1 lg:ml-56 flex flex-col min-h-screen">
 
                 {/* Top header */}
-                <header className="h-14 border-b border-zinc-200 dark:border-white/[0.06] flex items-center px-5 gap-4 shrink-0 bg-white dark:bg-[#0a0a0a] sticky top-0 z-30">
+                <header className="h-14 border-b border-slate-200 dark:border-slate-800 flex items-center px-5 gap-4 shrink-0 bg-white dark:bg-slate-950 sticky top-0 z-30 shadow-sm dark:shadow-lg dark:shadow-slate-900/20">
 
                     {/* Mobile menu toggle */}
                     <button
@@ -188,12 +188,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                             return (
                                 <span key={seg} className="flex items-center gap-1.5 min-w-0">
                                     {i > 0 && (
-                                        <span className="text-zinc-300 dark:text-zinc-700 select-none">/</span>
+                                        <span className="text-slate-300 dark:text-slate-700 select-none">/</span>
                                     )}
                                     <span className={
                                         isLast
-                                            ? 'font-semibold text-zinc-900 dark:text-white truncate'
-                                            : 'text-zinc-400 dark:text-zinc-500 truncate'
+                                            ? 'font-semibold bg-gradient-to-r from-blue-700 to-emerald-600 dark:from-emerald-400 dark:to-blue-400 bg-clip-text text-transparent truncate'
+                                            : 'text-slate-500 dark:text-slate-400 truncate'
                                     }>
                                         {SEGMENT_LABELS[seg] ?? seg}
                                     </span>
@@ -203,25 +203,25 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </div>
 
                     {/* Right side actions */}
-                    <div className="ml-auto flex items-center gap-2">
+                    <div className="ml-auto flex items-center gap-3">
                         {/* Theme toggle (desktop) */}
                         <button
                             onClick={toggle}
-                            className="hidden lg:flex size-8 items-center justify-center rounded-md text-zinc-400 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-white/[0.06] transition-all"
+                            className="hidden lg:flex size-8 items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
                         >
-                            {isDark ? <Sun size={15} /> : <Moon size={15} />}
+                            {isDark ? <Sun size={16} /> : <Moon size={16} />}
                         </button>
 
                         {/* Status indicator */}
-                        <div className="flex items-center gap-1.5 px-2.5 h-7 bg-emerald-50 dark:bg-emerald-400/10 border border-emerald-200 dark:border-emerald-400/20 rounded-full">
-                            <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                            <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-400">Online</span>
+                        <div className="flex items-center gap-1.5 px-3 h-8 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-full shadow-sm dark:shadow-emerald-500/10">
+                            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="text-[11px] font-medium text-emerald-700 dark:text-emerald-400">Online</span>
                         </div>
                     </div>
                 </header>
 
                 {/* Page content */}
-                <main className="flex-1 p-5 lg:p-7 bg-white dark:bg-[#0a0a0a]">
+                <main className="flex-1 p-5 lg:p-7 bg-slate-50 dark:bg-slate-950">
                     {children}
                 </main>
             </div>
