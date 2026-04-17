@@ -17,6 +17,7 @@ import {
     ChartBar,
 } from '@phosphor-icons/react';
 import { useTheme } from '@/lib/theme';
+import { LogoIcon } from '@/components/logo-icon';
 
 const NAV = [
     { href: '/dashboard',           label: 'Tổng quan',     icon: SquaresFour, exact: true  },
@@ -75,26 +76,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             `}>
 
                 {/* Brand */}
-                <div className="h-14 flex items-center px-5 border-b border-slate-200 dark:border-slate-800 shrink-0 gap-3 bg-gradient-to-r from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
-                    <div className="size-7 bg-gradient-to-br from-blue-600 to-emerald-600 dark:from-emerald-500 dark:to-blue-500 flex items-center justify-center shrink-0 rounded-lg shadow-md">
-                        <MusicNote size={14} weight="fill" className="text-white" />
-                    </div>
-                    <div>
-                        <p className="text-[12px] font-bold tracking-tight bg-gradient-to-r from-blue-700 to-emerald-600 dark:from-emerald-400 dark:to-blue-400 bg-clip-text text-transparent leading-none">
-                            Phazel Sound
-                        </p>
-                        <p className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
-                            Admin Panel
-                        </p>
+                <div className="h-16 flex items-center px-5 border-b border-slate-200 dark:border-slate-800 shrink-0 gap-3 bg-white dark:bg-slate-950">
+                    <div className="flex-1">
+                        <div className="flex items-center gap-3">
+                            <LogoIcon size={40} />
+                            <div className="min-w-0">
+                                <p className="text-[13px] font-bold text-slate-900 dark:text-white leading-none">
+                                    Phazel Sound
+                                </p>
+                                <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                                    Bảng quản trị
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 {/* Nav */}
-                <nav className="flex-1 px-2.5 py-3 space-y-1 overflow-y-auto">
-                    {/* Label section */}
-                    <p className="text-[9px] font-semibold tracking-[0.15em] text-slate-400 dark:text-slate-500 px-2.5 pt-2 pb-2 uppercase">
-                        Navigation
-                    </p>
+                <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
                     {NAV.map(({ href, label, icon: Icon, exact }) => {
                         const active = isActive(href, exact);
                         return (
@@ -103,55 +102,55 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                                 href={href}
                                 onClick={() => setOpen(false)}
                                 className={`
-                                    flex items-center gap-2.5 px-3 h-9 text-[13px] rounded-lg transition-all duration-200
+                                    flex items-center gap-3 px-4 h-10 text-[13px] rounded-full transition-all duration-200 font-medium
                                     ${active
-                                        ? 'bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold shadow-lg shadow-blue-500/20 dark:shadow-emerald-500/20'
-                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 font-medium'
+                                        ? 'bg-gradient-to-r from-yellow-400 via-pink-500 to-blue-500 text-white shadow-lg shadow-pink-500/30 dark:shadow-pink-500/20'
+                                        : 'text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60'
                                     }
                                 `}
                             >
                                 <Icon
-                                    size={16}
+                                    size={18}
                                     weight={active ? 'fill' : 'regular'}
-                                    className={active ? '' : 'opacity-60'}
+                                    className={active ? '' : 'opacity-70'}
                                 />
-                                {label}
+                                <span className="truncate">{label}</span>
                             </Link>
                         );
                     })}
                 </nav>
 
                 {/* Bottom */}
-                <div className="px-2.5 py-3 border-t border-slate-200 dark:border-slate-800 shrink-0 space-y-1">
+                <div className="px-3 py-4 border-t border-slate-200 dark:border-slate-800 shrink-0 space-y-2">
                     <button
                         onClick={toggle}
-                        className="flex items-center gap-2.5 px-3 h-9 text-[13px] font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 w-full rounded-lg transition-all duration-200"
+                        className="flex items-center gap-3 px-4 h-10 text-[13px] font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60 w-full rounded-full transition-all duration-200"
                     >
                         {isDark
-                            ? <Sun size={16} weight="regular" className="opacity-70" />
-                            : <Moon size={16} weight="regular" className="opacity-70" />}
-                        {isDark ? 'Sáng' : 'Tối'}
+                            ? <Sun size={18} weight="regular" className="opacity-70" />
+                            : <Moon size={18} weight="regular" className="opacity-70" />}
+                        <span className="truncate">{isDark ? 'Chế độ sáng' : 'Chế độ tối'}</span>
                     </button>
                     <button
                         onClick={logout}
-                        className="flex items-center gap-2.5 px-3 h-9 text-[13px] font-medium text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 w-full rounded-lg transition-all duration-200"
+                        className="flex items-center gap-3 px-4 h-10 text-[13px] font-medium text-slate-600 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-100/60 dark:hover:bg-red-950/40 w-full rounded-full transition-all duration-200"
                     >
-                        <SignOut size={16} weight="regular" className="opacity-70" />
-                        Đăng xuất
+                        <SignOut size={18} weight="regular" className="opacity-70" />
+                        <span className="truncate">Đăng xuất</span>
                     </button>
 
-                    {/* User pill */}
-                    <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 px-2.5 pb-1">
-                        <div className="flex items-center gap-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-800">
-                            <div className="size-8 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-md flex items-center justify-center shrink-0 text-white font-bold text-sm">
-                                A
+                    {/* User profile section */}
+                    <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                        <div className="flex items-center gap-3 p-3 rounded-full bg-gradient-to-r from-slate-100 to-slate-50 dark:from-slate-800 dark:to-slate-900 hover:from-slate-150 dark:hover:from-slate-700 transition-all duration-200 cursor-pointer">
+                            <div className="size-9 bg-gradient-to-br from-yellow-400 via-pink-500 to-blue-500 rounded-full flex items-center justify-center shrink-0 text-white font-bold text-sm">
+                                Q
                             </div>
-                            <div className="min-w-0">
-                                <p className="text-[11px] font-semibold text-slate-900 dark:text-slate-200 truncate leading-none">
-                                    Admin
+                            <div className="min-w-0 flex-1">
+                                <p className="text-[11px] font-bold text-slate-900 dark:text-slate-200 truncate leading-none">
+                                    Quản trị viên
                                 </p>
                                 <p className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
-                                    ROLE_ADMIN
+                                    Administrator
                                 </p>
                             </div>
                         </div>
@@ -182,17 +181,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </button>
 
                     {/* Breadcrumb */}
-                    <div className="flex items-center gap-1.5 text-[12px] min-w-0">
+                    <div className="flex items-center gap-2 text-[12px] min-w-0">
                         {segments.map((seg, i) => {
                             const isLast = i === segments.length - 1;
                             return (
-                                <span key={seg} className="flex items-center gap-1.5 min-w-0">
+                                <span key={seg} className="flex items-center gap-2 min-w-0">
                                     {i > 0 && (
-                                        <span className="text-slate-300 dark:text-slate-700 select-none">/</span>
+                                        <span className="text-slate-300 dark:text-slate-600 select-none">›</span>
                                     )}
                                     <span className={
                                         isLast
-                                            ? 'font-semibold bg-gradient-to-r from-blue-700 to-emerald-600 dark:from-emerald-400 dark:to-blue-400 bg-clip-text text-transparent truncate'
+                                            ? 'font-bold bg-gradient-to-r from-yellow-500 via-pink-500 to-blue-500 bg-clip-text text-transparent truncate'
                                             : 'text-slate-500 dark:text-slate-400 truncate'
                                     }>
                                         {SEGMENT_LABELS[seg] ?? seg}
@@ -203,19 +202,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </div>
 
                     {/* Right side actions */}
-                    <div className="ml-auto flex items-center gap-3">
+                    <div className="ml-auto flex items-center gap-2">
                         {/* Theme toggle (desktop) */}
                         <button
                             onClick={toggle}
-                            className="hidden lg:flex size-8 items-center justify-center rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200"
+                            className="hidden lg:flex size-9 items-center justify-center rounded-full text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-slate-800/60 transition-all duration-200"
                         >
-                            {isDark ? <Sun size={16} /> : <Moon size={16} />}
+                            {isDark ? <Sun size={18} /> : <Moon size={18} />}
                         </button>
 
                         {/* Status indicator */}
-                        <div className="flex items-center gap-1.5 px-3 h-8 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/30 rounded-full shadow-sm dark:shadow-emerald-500/10">
+                        <div className="flex items-center gap-2 px-4 h-9 bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-950/40 dark:to-emerald-900/40 border border-emerald-200 dark:border-emerald-800/60 rounded-full shadow-sm dark:shadow-emerald-950/20">
                             <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-                            <span className="text-[11px] font-medium text-emerald-700 dark:text-emerald-400">Online</span>
+                            <span className="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">Hoạt động</span>
                         </div>
                     </div>
                 </header>
