@@ -168,7 +168,7 @@ const AdClicksChart = React.memo(function AdClicksChart({ ads }: { ads: Ad[] }) 
     );
 }
 
-// ─── Stat Card ────────────────────────────────────────��────────────────────────
+// ─── Stat Card ─���──────────────────────────────────────��────────────────────────
 function StatCard({ label, value, sub, icon: Icon, color, bg, loading, badge }: {
     label: string; value: string; sub?: string; icon: React.ElementType;
     color: string; bg: string; loading: boolean; badge?: string;
@@ -339,15 +339,18 @@ export default function DashboardPage() {
     }, [loadRevenue, window_]);
 
     // ── Derived stats ──────────────────────────────────────────────────────────
-    const totalImpressions = ads.reduce((s, a) => s + (a.totalImpressions ?? 0), 0);
-    const totalClicks      = ads.reduce((s, a) => s + (a.totalClicks ?? 0), 0);
-    const activeAds        = ads.filter(a => a.status === 'ACTIVE').length;
-    const totalRevenue     = useMemo(() => revenue.reduce((s, x) => s + Number(x.total ?? 0), 0), [revenue]);
-    const avgCtr           = totalImpressions > 0
-        ? ((totalClicks / totalImpressions) * 100).toFixed(2)
-        : '0.00';
+    const { totalImpressions, totalClicks, activeAds, avgCtr, estimatedAdRevenue } = useMemo(() => {
+        const impressions = ads.reduce((s, a) => s + (a.totalImpressions ?? 0), 0);
+        const clicks = ads.reduce((s, a) => s + (a.totalClicks ?? 0), 0);
+        const active = ads.filter(a => a.status === 'ACTIVE').length;
+        const ctr = impressions > 0
+            ? ((clicks / impressions) * 100).toFixed(2)
+            : '0.00';
+        const adRevenue = ads.reduce((s, a) => s + (a.estimatedRevenueVnd ?? 0), 0);
+        return { totalImpressions: impressions, totalClicks: clicks, activeAds: active, avgCtr: ctr, estimatedAdRevenue: adRevenue };
+    }, [ads]);
 
-    const estimatedAdRevenue = ads.reduce((s, a) => s + (a.estimatedRevenueVnd ?? 0), 0);
+    const totalRevenue = useMemo(() => revenue.reduce((s, x) => s + Number(x.total ?? 0), 0), [revenue]);
 
     return (
         <div className="space-y-6">
