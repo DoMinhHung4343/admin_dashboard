@@ -15,6 +15,8 @@ import {
     SpeakerHigh,
     Warning,
     ChartBar,
+    MusicNotesPlus,
+    Microphone,
 } from '@phosphor-icons/react';
 import { useTheme } from '@/lib/theme';
 import { LogoIcon } from '@/components/logo-icon';
@@ -22,7 +24,9 @@ import { LogoIcon } from '@/components/logo-icon';
 const NAV = [
     { href: '/dashboard',           label: 'Tổng quan',     icon: SquaresFour, exact: true  },
     { href: '/dashboard/users',     label: 'Người dùng',   icon: Users,       exact: false },
-    { href: '/dashboard/music',     label: 'Nhạc & Album',        icon: MusicNote,   exact: false },
+    { href: '/dashboard/music',     label: 'Bài hát',        icon: MusicNote,   exact: false },
+    { href: '/dashboard/albums',    label: 'Album',        icon: MusicNotesPlus, exact: false },
+    { href: '/dashboard/artists',   label: 'Nghệ sĩ',      icon: Microphone, exact: false },
     { href: '/dashboard/payments',  label: 'Gói cước',     icon: CreditCard,  exact: false },
     { href: '/dashboard/ads',       label: 'Quảng cáo',   icon: SpeakerHigh, exact: false },
     { href: '/dashboard/reports',   label: 'Báo cáo',     icon: Warning,     exact: false },
@@ -33,7 +37,9 @@ const NAV = [
 const SEGMENT_LABELS: Record<string, string> = {
     dashboard:  'Trang chủ',
     users:      'Người dùng',
-    music:      'Nhạc & Album',
+    music:      'Bài hát',
+    albums:     'Album',
+    artists:    'Nghệ sĩ',
     payments:   'Gói cước',
     ads:        'Quảng cáo',
     reports:    'Báo cáo',
